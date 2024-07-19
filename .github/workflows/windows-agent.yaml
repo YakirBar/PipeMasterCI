@@ -4,17 +4,8 @@ on:
   workflow_dispatch:
     inputs:
       DOCKER_CONTAINER_PORT:
-        description: "Docker Container Port"
+        description: 'Docker Container Port'
         required: true
-        type: string
-      DOCKER_CONTAINER_CONTENT:
-        description: "Docker Container Content"
-        required: true
-        type: string
-      DOCKER_IMAGE_VERSION:
-        description: "Docker Image Version"
-        required: true
-        type: string
 
 jobs:
   build-and-push:
@@ -39,7 +30,7 @@ jobs:
           context: ./virtual
           push: true
           tags: |
-            yakirbartech/pipemasterci:${{ github.event.inputs.DOCKER_IMAGE_VERSION }}
+            yakirbartech/pipemasterci:1.0.6
 
       - name: Logout from Docker Hub
         run: docker logout
@@ -54,5 +45,4 @@ jobs:
           sudo docker run -d --name Test \
             -p ${{ github.event.inputs.DOCKER_CONTAINER_PORT }}:${{ github.event.inputs.DOCKER_CONTAINER_PORT }} \
             -e PORT=${{ github.event.inputs.DOCKER_CONTAINER_PORT }} \
-            -e CONTENT="${{ github.event.inputs.DOCKER_CONTAINER_CONTENT }}" \
-            yakirbartech/pipemasterci:${{ github.event.inputs.DOCKER_IMAGE_VERSION }}
+            yakirbartech/pipemasterci:1.0.6
