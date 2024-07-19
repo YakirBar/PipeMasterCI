@@ -12,7 +12,7 @@ const decodeHtmlEntities = (str) => {
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.get("/", (request, response) => {
-    const content = process.env.CONTENT || '<h1>Content not recognized</h1>';
+    const content = process.env.CONTENT || '<h1>Content not recognized</h1><p>Additional content can be placed here.</p>';
     const decodedContent = decodeHtmlEntities(content);
 
     const htmlContent = `
@@ -29,15 +29,23 @@ app.get("/", (request, response) => {
                     margin: 0;
                     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
                     display: flex;
-                    justify-content: center;
+                    flex-direction: column;
                     align-items: center;
+                    justify-content: center;
                     height: 100vh;
                     background-image: url('your-background-image.jpg'); /* Optional background image */
                     background-size: cover;
                     background-position: center;
                 }
 
-                div {
+                .container {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    text-align: center;
+                }
+
+                .card {
                     color: #ffffff;
                     background: rgba(255, 255, 255, 0.1);
                     backdrop-filter: blur(10px);
@@ -47,18 +55,18 @@ app.get("/", (request, response) => {
                     max-width: 800px;
                     width: 100%;
                     box-sizing: border-box;
-                    text-align: center;
                     transition: transform 0.3s ease, box-shadow 0.3s ease;
                     border: 1px solid rgba(255, 255, 255, 0.2);
+                    margin-bottom: 20px; /* Space between card and links */
                 }
 
-                div:hover {
+                .card:hover {
                     transform: translateY(-10px);
                     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
                 }
 
                 h1 {
-                    font-size: 2.5em;
+                    font-size: 2.0em;
                     margin: 0 0 20px;
                     color: #0fa3b1;
                 }
@@ -78,13 +86,28 @@ app.get("/", (request, response) => {
                 a:hover {
                     text-decoration: underline;
                 }
+
+                .links {
+                    margin-top: 20px;
+                }
+
+                .links p {
+                    font-size: 1em;
+                    line-height: 1.4;
+                }
             </style>
         </head>
         <body>
-            <div>
-                ${decodedContent}
-                <p>Check out the GitHub Actions for this project:</p>
-                <p><a href="https://github.com/YakirBar/PipeMasterCI/actions" target="_blank">https://github.com/YakirBar/PipeMasterCI/actions</a></p>
+            <div class="container">
+                <div class="card">
+                    ${decodedContent}
+                </div>
+                <div class="links">
+                    <p>Check out the GitHub Actions for this project:</p>
+                    <p><a href="https://github.com/YakirBar/PipeMasterCI/actions" target="_blank">https://github.com/YakirBar/PipeMasterCI/actions</a></p>
+                    <p>Check out the DockerHub Registry for this project:</p>
+                    <p><a href="https://hub.docker.com/r/yakirbartech/pipemasterci/tags" target="_blank">https://hub.docker.com/r/yakirbartech/pipemasterci/tags</a></p>
+                </div>
             </div>
         </body>
         </html>
