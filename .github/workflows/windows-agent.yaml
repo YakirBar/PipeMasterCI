@@ -34,3 +34,10 @@ jobs:
 
       - name: Logout from Docker Hub
         run: docker logout
+
+  pull-and-run:
+    runs-on: self-hosted
+
+    steps:
+      - name: Pull and run Docker image
+        run: sudo docker run -d --name Test -p 8000:8000 yakirbartech/pipemasterci:${{ github.event.inputs.DOCKER_IMAGE_VERSION }}
