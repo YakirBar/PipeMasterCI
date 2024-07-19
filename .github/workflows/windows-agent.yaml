@@ -27,20 +27,20 @@ jobs:
       - name: Login to Nexus Repository
         uses: docker/login-action@v2
         with:
-          registry: 34.207.206.230:8080
+          registry: http://34.207.206.230:8080
           username: ${{ secrets.NEXUS_USERNAME }}
           password: ${{ secrets.NEXUS_PASSWORD }}
 
       - name: Build Docker image
         run: |
-          docker build -t 34.207.206.230:8080/pipemasterci/virtual:0.1 ./virtual
+          docker build -t http://34.207.206.230:8080/pipemasterci/virtual:0.1 ./virtual
 
       - name: Push Docker image to Nexus
         run: |
-          docker push 34.207.206.230:8080/pipemasterci/virtual:0.1
+          docker push http://34.207.206.230:8080/pipemasterci/virtual:0.1
 
       - name: Logout from Nexus Repository
-        run: docker logout 34.207.206.230:8080
+        run: docker logout http://34.207.206.230:8080
 
     # steps:
     #   - name: Checkout code
