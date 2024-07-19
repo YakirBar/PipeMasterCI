@@ -2,6 +2,10 @@ name: Docker Build and Push
 
 on:
   workflow_dispatch:
+    inputs:
+      DOCKER_IMAGE_VERSION:
+        description: 'Docker Image Version'
+        required: true
 
 jobs:
   build-and-push:
@@ -26,7 +30,7 @@ jobs:
           context: ./virtual
           push: true
           tags: |
-            yakirbartech/pipemasterci:0.1
+            yakirbartech/pipemasterci:${{ github.event.inputs.DOCKER_IMAGE_VERSION }}
 
       - name: Logout from Docker Hub
         run: docker logout
