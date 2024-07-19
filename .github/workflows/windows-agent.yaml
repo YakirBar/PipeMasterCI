@@ -3,8 +3,14 @@ name: Docker Build and Push
 on:
   workflow_dispatch:
     inputs:
+      DOCKER_CONTAINER_PORT:
+        description: "Docker Container Port"
+        required: true
+      DOCKER_CONTAINER_CONTENT:
+        description: "Docker Container Content"
+        required: true
       DOCKER_IMAGE_VERSION:
-        description: 'Docker Image Version'
+        description: "Docker Image Version"
         required: true
 
 jobs:
@@ -41,4 +47,9 @@ jobs:
 
     steps:
       - name: Pull and run Docker image
-        run: sudo docker run -d --name Test -p 8001:8001 -e PORT=8001 -e CONTENT="&lt;h1&gt;HEYd&lt;/h1&gt;&lt;h2&gt;HEY world&lt;/h2&gt;" yakirbartech/pipemasterci:${{ github.event.inputs.DOCKER_IMAGE_VERSION }}
+        run: |
+          sudo docker run -d --name Test \
+            -p ${{ github.event.inputs.DOCKER_CONTAINER_PORT }}:${{ github.event.inputs.DOCKER_CONTAINER_PORT }} \
+            -e PORT=${{ github.event.inputs.DOCKER_CONTAINER_PORT }} \
+            -e CONTENT=${{ github.event.inputs.DOCKER_CONTAINER_CONTENT }} \
+            yakirbartech/pipemasterci:${{ github.event.inputs.DOCKER_IMAGE_VERSION }}
