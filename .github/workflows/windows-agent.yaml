@@ -40,4 +40,4 @@ jobs:
 
     steps:
       - name: Pull and run Docker image
-        run: sudo docker run -d --name Test -p 8000:8000 yakirbartech/pipemasterci:${{ github.event.inputs.DOCKER_IMAGE_VERSION }}
+        run: sudo docker run -d --name Test -p 8001:8001 -e PORT=8001 -e CONTENT="&lt;h1&gt;HEYd&lt;/h1&gt;&lt;h2&gt;HEY world&lt;/h2&gt;" yakirbartech/pipemasterci:${{ github.event.inputs.DOCKER_IMAGE_VERSION }}
