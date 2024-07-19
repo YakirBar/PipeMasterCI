@@ -44,9 +44,4 @@ jobs:
 
     steps:
       - name: Pull and run Docker image
-        run: |
-          sudo docker run -d --name Test123 \
-            -p ${{ github.event.inputs.DOCKER_CONTAINER_PORT }}:${{ github.event.inputs.DOCKER_CONTAINER_PORT }} \
-            -e PORT=${{ github.event.inputs.DOCKER_CONTAINER_PORT }} \
-            -e CONTENT=${{ github.event.inputs.DOCKER_CONTAINER_CONTENT }}
-            yakirbartech/pipemasterci:1.0.7
+        run: sudo docker run -d -p ${{ github.event.inputs.DOCKER_CONTAINER_PORT }}:${{ github.event.inputs.DOCKER_CONTAINER_PORT }} -e PORT=${{ github.event.inputs.DOCKER_CONTAINER_PORT }} -e CONTENT=${{ github.event.inputs.DOCKER_CONTAINER_CONTENT }} yakirbartech/pipemasterci:1.0.7
