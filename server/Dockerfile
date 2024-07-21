@@ -1,7 +1,7 @@
 FROM alpine:latest
 
 # Install necessary dependencies
-RUN apk add --no-cache nodejs
+RUN apk add --no-cache nodejs npm
 
 WORKDIR /usr/src/app
 
@@ -13,4 +13,4 @@ COPY . .
 
 EXPOSE 4040
 
-CMD ["npm", "start"]
+CMD ["node", "src/index.js"]

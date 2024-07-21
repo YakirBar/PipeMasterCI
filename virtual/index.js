@@ -25,7 +25,7 @@ app.get("/", (request, response) => {
             <title>Virtual Site</title>
             <style>
                 body {
-                    background-color: #f9f7f3;
+                    background-color: #BFBDC1;
                     margin: 0;
                     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
                     display: flex;
@@ -68,17 +68,17 @@ app.get("/", (request, response) => {
                 h1 {
                     font-size: 2.0em;
                     margin: 0 0 20px;
-                    color: #0fa3b1;
+                    color: #95C623;
                 }
 
                 p {
                     font-size: 1.2em;
                     line-height: 1.6;
-                    color: #0fa3b1;
+                    color: #95C623;
                 }
 
                 a {
-                    color: #0fa3b1;
+                    color: #95C623;
                     text-decoration: none;
                     font-weight: bold;
                 }
